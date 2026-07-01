@@ -20,7 +20,6 @@ failures with jail/purge logic, and provides detailed colour‑coded console fee
 - **Rich console output** – ANSI colours, structured tags (`[SUCCESS]`, `[JAILED]`, …), and final summary.
 - **JSON configuration** – easily add/remove APIs without touching code.
 - **Comprehensive validation** – phone numbers, proxies, API templates, and CLI arguments are all validated.
-- **Modular architecture** – clear separation between engine, pool, I/O, and data structures.
 
 ---
 
