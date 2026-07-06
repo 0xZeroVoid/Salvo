@@ -3,7 +3,7 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 
 from kernel.models.api import ApiCall
-from kernel.utils.utils import send_single_request
+from kernel.utils.http_utils import send_single_request
 
 
 class TestSendSingleRequest:
