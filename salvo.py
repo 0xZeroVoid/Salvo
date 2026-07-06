@@ -1,7 +1,7 @@
 from kernel.core.engine import Engine
+from kernel.core.api_factory import ApiFactory
 from kernel.parser import setup_parser
 from kernel.console.console import Console
-from kernel.core.api_factory import ApiFactory
 from kernel.exceptions import LoadApiTemplatesError, EmptyApiTemplatesError
 
 
