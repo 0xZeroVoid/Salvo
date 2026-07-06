@@ -2,6 +2,7 @@ from kernel.core.engine import Engine
 from kernel.core.api_factory import ApiFactory
 from kernel.parser import setup_parser
 from kernel.console.console import Console
+from kernel.utils.utils import check_network_access
 from kernel.exceptions import LoadApiTemplatesError, EmptyApiTemplatesError
 
 
@@ -12,10 +13,11 @@ def main() -> None:
     This function is responsible for:
         1. Parsing and validating CLI arguments
         2. Initializing console output system
-        3. Ensuring safe execution conditions (proxy confirmation)
-        4. Loading and validating API templates
-        5. Constructing the runtime Engine
-        6. Launching the execution lifecycle
+        3. Ensure the device has network access
+        4. Ensuring safe execution conditions (proxy confirmation)
+        5. Loading and validating API templates
+        6. Constructing the runtime Engine
+        7. Launching the execution lifecycle
 
     Execution flow:
         CLI -> Config -> Console -> Safety checks -> API loading -> Engine -> Run
@@ -28,6 +30,12 @@ def main() -> None:
     config = setup_parser().parse_args()
 
     console = Console()
+
+    if not check_network_access():
+        console.error(
+            "No network connection. Please check your internet and try again."
+        )
+        console.shutdown(1)
 
     if config.proxy is None and not config.fallback:
         confirm = console.input(
