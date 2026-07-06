@@ -4,12 +4,12 @@ from fake_useragent import UserAgent
 from aiohttp import ClientSession, TCPConnector
 
 from kernel.core.api_pool import ApiPool
-from kernel.console.console import Console
-from kernel.models.api import ApiSlot, ApiCall
-from kernel.utils.utils import send_single_request
-from kernel.models.runtime_config import RuntimeConfig
 from kernel.core.session_tracker import SessionTracker
+from kernel.console.console import Console
 from kernel.console.tags import ConsoleTag, EventTag, ResponseTag
+from kernel.models.api import ApiSlot, ApiCall
+from kernel.models.runtime_config import RuntimeConfig
+from kernel.utils.http_utils import send_single_request
 
 
 class Engine:
