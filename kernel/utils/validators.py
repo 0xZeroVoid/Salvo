@@ -1,6 +1,6 @@
 from typing import Any
 
-from kernel.utils.regex_patterns import RegexPatterns
+from kernel.utils._regex_patterns import RegexPatterns
 from kernel.exceptions import (
     MalformedPhoneNumberError,
     MalformedProxyError,
