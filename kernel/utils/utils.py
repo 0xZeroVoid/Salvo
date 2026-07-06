@@ -1,53 +1,19 @@
-from aiohttp import ClientSession
-
-from kernel.models.api import ApiCall
+import socket
 
 
-async def send_single_request(
-    session: ClientSession,
-    apicall: ApiCall,
-    timeout: int,
-    headers: dict,
-    proxy: str | None = None,
-) -> int:
+def check_network_access(timeout: int = 10) -> bool:
     """
-    Execute a single HTTP request using aiohttp.
-
-    Supports GET and POST methods defined in ApiCall.
+    Check network connectivity by connecting to Google DNS (8.8.8.8:53).
 
     Args:
-        session | ClientSession: Shared aiohttp ClientSession.
-
-        apicall | ApiCall: API request definition.
-
-        timeout | int: request timeout in seconds.
-
-        headers | dict: HTTP headers  to attach.
-
-        proxy | str|None: Optional proxy URL.
+        timeout | int: connection timeout in seconds (default: 10).
 
     Returns:
-        HTTP status code (0 if unsopported method or failure).
+        True if connection successful, False otherwise.
     """
-    match apicall.method:
-        case "POST":
-            async with session.post(
-                url=apicall.url,
-                json=apicall.json,
-                data=apicall.data,
-                headers=headers,
-                timeout=timeout,
-                proxy=proxy,
-            ) as response:
-                status_code = response.status
+    try:
+        with socket.create_connection(address=("8.8.8.8", 53), timeout=timeout):
+            return True
 
-        case "GET":
-            async with session.get(
-                url=apicall.url, headers=headers, timeout=timeout, proxy=proxy
-            ) as response:
-                status_code = response.status
-
-        case _:
-            status_code = 0
-
-    return status_code
+    except OSError:
+        return False
