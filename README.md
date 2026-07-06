@@ -116,17 +116,18 @@ salvo/
 │   ├── structures/
 │   │   └── fenwick_tree.py       # Fenwick tree (BIT) implementation
 │   └── utils/
-│       ├── regex_patterns.py     # Precompiled regex patterns
-│       ├── utils.py              # HTTP request helper
+│       ├── _regex_patterns.py    # Internal regex patterns
+│       ├── http_utils.py         # HTTP request utilities
+│       ├── utils.py              # General utilities
 │       └── validators.py         # API, phone & proxy validators
-├── tests/                        # Comprehensive test suite
+├── tests/
 │   ├── test_api_factory.py
 │   ├── test_api_pool.py
 │   ├── test_console.py
 │   ├── test_fenwick_tree.py
+│   ├── test_http_utils.py
 │   ├── test_parser.py
 │   ├── test_session_tracker.py
-│   ├── test_utils.py
 │   └── test_validators.py
 ├── tools/
 │   └── calculate_ticket.py       # Ticket scoring script
